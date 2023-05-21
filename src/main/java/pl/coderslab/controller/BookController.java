@@ -60,6 +60,15 @@ public class BookController {
         return Objects.nonNull(book) ? book.toString() : "Nie znaleziono książki o podanym id " + id;
     }
 
+    @GetMapping(path = "/books", produces = "text/plain;charset=utf-8")
+    String findAll() {
+
+        final List<Book> books = bookService.findAll();
+
+        return books.toString();
+    }
+
+
     // update book
     @PutMapping(path = "/book/{id}")
     void update(@PathVariable Long id, @RequestParam String title, @RequestParam int rating, @RequestParam String description) {

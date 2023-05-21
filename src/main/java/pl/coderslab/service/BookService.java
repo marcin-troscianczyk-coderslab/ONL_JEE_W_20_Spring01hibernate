@@ -40,6 +40,10 @@ public class BookService {
         return bookDao.findById(id);
     }
 
+    public List<Book> findAll() {
+        return bookDao.findAll();
+    }
+
     public void update(Book book) {
         bookDao.update(book);
     }

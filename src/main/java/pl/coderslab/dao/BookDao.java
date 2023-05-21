@@ -5,6 +5,7 @@ import pl.coderslab.entity.Book;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 
 @Repository
 public class BookDao {
@@ -18,6 +19,12 @@ public class BookDao {
 
     public Book findById(Long id) {
         return entityManager.find(Book.class, id);
+    }
+
+    public List<Book> findAll() {
+        return //entityManager.createQuery("select b from Book b join fetch b.authors")
+                entityManager.createQuery("select b from Book b")
+                .getResultList();
     }
 
     public void update(Book book) {

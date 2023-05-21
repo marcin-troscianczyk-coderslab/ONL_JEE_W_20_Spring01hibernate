@@ -7,6 +7,7 @@ import lombok.ToString;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,7 +19,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "books")
-@ToString(exclude = {"rating"})
+@ToString//(exclude = {"rating"})
 @Setter
 @Getter
 public class Book {
@@ -29,13 +30,15 @@ public class Book {
     private Long id;
 
     private String title;
+    @ToString.Exclude
     private int rating;
     private String description;
 
     @ManyToOne//(cascade = CascadeType.PERSIST)
     private Publisher publisher;
 
-    @ManyToMany
+    @ManyToMany//(fetch = FetchType.EAGER)
+    @ToString.Exclude
     private List<Author> authors = new ArrayList<>();
 
 }
