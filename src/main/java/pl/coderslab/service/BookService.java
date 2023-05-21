@@ -44,6 +44,10 @@ public class BookService {
         return bookDao.findAll();
     }
 
+    public List<Book> findByRating(int rating) {
+        return bookDao.findByRating(rating);
+    }
+
     public void update(Book book) {
         bookDao.update(book);
     }

@@ -68,6 +68,13 @@ public class BookController {
         return books.toString();
     }
 
+    @GetMapping(path = "/books", produces = "text/plain;charset=utf-8", params = "rating")
+    String findAllByRating(@RequestParam int rating) {
+
+        final List<Book> books = bookService.findByRating(rating);
+
+        return books.toString();
+    }
 
     // update book
     @PutMapping(path = "/book/{id}")

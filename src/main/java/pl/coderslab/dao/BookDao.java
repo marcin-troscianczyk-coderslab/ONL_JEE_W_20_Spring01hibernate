@@ -27,6 +27,11 @@ public class BookDao {
                 .getResultList();
     }
 
+    public List<Book> findByRating(int rating) {
+        return entityManager.createQuery("select b from Book b where b.rating = :rating")
+                .setParameter("rating", rating)
+                .getResultList();
+    }
     public void update(Book book) {
         entityManager.merge(book);
     }
