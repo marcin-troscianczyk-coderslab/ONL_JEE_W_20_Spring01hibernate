@@ -1,0 +1,13 @@
+POST http://localhost:8080/author
+Content-Type: application/x-www-form-urlencoded;charset=utf-8
+
+firstName=Jan&lastName=Ącki
+
+###
+GET http://localhost:8080/author/1
+
+###
+PUT http://localhost:8080/author/1?firstName=Marcin&lastName=zażółć gęślą jaźń
+
+###
+DELETE http://localhost:8080/author/1
