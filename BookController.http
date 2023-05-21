@@ -1,7 +1,7 @@
 POST http://localhost:8080/book
 Content-Type: application/x-www-form-urlencoded;charset=utf-8
 
-title=zażółć gęślą jaźń&description=jakiś opis&rating=10
+title=zażółć gęślą jaźń&description=jakiś opis&rating=10&publisherName=Helion
 ###
 
 GET http://localhost:8080/book/1

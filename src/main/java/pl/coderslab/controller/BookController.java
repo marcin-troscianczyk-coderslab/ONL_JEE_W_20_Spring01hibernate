@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import pl.coderslab.entity.Book;
+import pl.coderslab.entity.Publisher;
 import pl.coderslab.service.BookService;
 
 import java.util.Objects;
@@ -23,13 +24,18 @@ public class BookController {
 
     // create book
     @PostMapping(path = "/book")
-    void save(@RequestParam String title, @RequestParam int rating, @RequestParam String description) {
+    void save(@RequestParam String title, @RequestParam int rating, @RequestParam String description, @RequestParam String publisherName) {
 
         final Book book = new Book();
 
         book.setTitle(title);
         book.setRating(rating);
         book.setDescription(description);
+
+        Publisher publisher = new Publisher();
+        publisher.setName(publisherName);
+
+        book.setPublisher(publisher);
 
         bookService.save(book);
     }
