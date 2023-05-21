@@ -5,6 +5,8 @@ import org.springframework.transaction.annotation.Transactional;
 import pl.coderslab.dao.AuthorDao;
 import pl.coderslab.entity.Author;
 
+import java.util.List;
+
 @Service
 @Transactional
 public class AuthorService {
@@ -21,6 +23,10 @@ public class AuthorService {
 
     public Author findById(Long id) {
         return authorDao.findById(id);
+    }
+
+    public List<Author> findAll() {
+        return authorDao.findAll();
     }
 
     public void update(Author author) {

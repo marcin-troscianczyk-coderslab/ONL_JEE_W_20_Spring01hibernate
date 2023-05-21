@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import pl.coderslab.entity.Author;
 import pl.coderslab.service.AuthorService;
 
+import java.util.List;
 import java.util.Objects;
 
 @RestController
@@ -42,6 +43,13 @@ class AuthorController {
         return author != null ? author.toString() : "Nie znaleziono autora o podanym id " + id;
     }
 
+    @GetMapping(path = "/authors", produces = "text/plain;charset=utf-8")
+    String findAll() {
+
+        final List<Author> authors = authorService.findAll();
+
+        return authors.toString();
+    }
     // updates author
     @PutMapping(path = "/author/{id}")
     void update(@PathVariable Long id, @RequestParam String firstName, @RequestParam String lastName) {

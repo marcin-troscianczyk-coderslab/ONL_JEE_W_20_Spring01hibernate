@@ -7,6 +7,9 @@ firstName=Jan&lastName=Ącki
 GET http://localhost:8080/author/1
 
 ###
+GET http://localhost:8080/authors
+
+###
 PUT http://localhost:8080/author/1?firstName=Marcin&lastName=zażółć gęślą jaźń
 
 ###
