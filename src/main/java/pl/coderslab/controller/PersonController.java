@@ -1,14 +1,19 @@
 package pl.coderslab.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import pl.coderslab.entity.Person;
+import pl.coderslab.service.PersonService;
 
 @Controller
+@RequiredArgsConstructor
 class PersonController {
+
+    private final PersonService personService;
 
     @GetMapping(path = "/form")
     String showAddForm() {
@@ -17,13 +22,9 @@ class PersonController {
 
     @PostMapping(path = "/form")
     @ResponseBody
-    String processAddForm(@RequestParam String login, @RequestParam String password, @RequestParam String email) {
+    String processAddForm(Person person) {
 
-        Person person = new Person();
-
-        person.setLogin(login);
-        person.setPassword(password);
-        person.setEmail(email);
+        personService.save(person);
 
         return person.toString();
 

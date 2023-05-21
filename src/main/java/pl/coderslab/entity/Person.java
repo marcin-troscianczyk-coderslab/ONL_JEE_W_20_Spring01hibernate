@@ -21,6 +21,7 @@ public class Person {
     @Setter(AccessLevel.NONE)
     private Long id;
     private String login;
+    @Setter(AccessLevel.NONE)
     private String password;
     private String email;
 
