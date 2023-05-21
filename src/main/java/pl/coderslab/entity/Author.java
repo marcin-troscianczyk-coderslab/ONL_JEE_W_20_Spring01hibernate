@@ -1,6 +1,8 @@
 package pl.coderslab.entity;
 
 import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -13,7 +15,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "authors")
 @Setter
+@Getter
 @ToString
+@NoArgsConstructor
 public class Author {
 
     @Id
@@ -23,4 +27,8 @@ public class Author {
 
     private String firstName;
     private String lastName;
+
+    public Author(Long id) {
+        this.id = id;
+    }
 }

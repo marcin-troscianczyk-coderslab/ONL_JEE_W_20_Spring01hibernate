@@ -7,11 +7,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import pl.coderslab.entity.Author;
 import pl.coderslab.entity.Book;
 import pl.coderslab.entity.Publisher;
 import pl.coderslab.service.BookService;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @RestController
 public class BookController {
@@ -24,7 +28,7 @@ public class BookController {
 
     // create book
     @PostMapping(path = "/book")
-    void save(@RequestParam String title, @RequestParam int rating, @RequestParam String description, @RequestParam String publisherName) {
+    void save(@RequestParam String title, @RequestParam int rating, @RequestParam String description, @RequestParam String publisherName, @RequestParam("authorId") Long[] authorIds) {
 
         final Book book = new Book();
 
@@ -36,6 +40,13 @@ public class BookController {
         publisher.setName(publisherName);
 
         book.setPublisher(publisher);
+
+        List<Author> authors =
+                Arrays.stream(authorIds)
+                        .map(Author::new)
+                        .collect(Collectors.toList());
+
+        book.setAuthors(authors);
 
         bookService.save(book);
     }
