@@ -33,8 +33,8 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
-    @Size(min = 5)
+    @NotBlank(message = "{title.not.empty.error}")
+    @Size(min = 5, message = "{title.too.short.error}")
     private String title;
 
     @Range(min = 1, max = 10)

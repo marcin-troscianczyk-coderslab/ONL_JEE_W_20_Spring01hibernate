@@ -3,6 +3,7 @@ package pl.coderslab.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +15,7 @@ import pl.coderslab.service.AuthorService;
 import pl.coderslab.service.BookService;
 import pl.coderslab.service.PublisherService;
 
+import javax.validation.Valid;
 import java.util.Collection;
 import java.util.List;
 
@@ -34,7 +36,11 @@ class BookFormController {
 
     // obsluga formularza dodawania ksiazki
     @PostMapping(path = "/book/form")
-    String processAddBookForm(Book book) {
+    String processAddBookForm(@Valid Book book, BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) {
+            return "book/add";
+        }
 
         bookService.save(book);
 
@@ -48,7 +54,11 @@ class BookFormController {
     }
 
     @PostMapping(path = "/book/edit")
-    String processEditBookForm(Book book) {
+    String processEditBookForm(@Valid Book book, BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) {
+            return "book/edit";
+        }
 
         bookService.update(book);
 
