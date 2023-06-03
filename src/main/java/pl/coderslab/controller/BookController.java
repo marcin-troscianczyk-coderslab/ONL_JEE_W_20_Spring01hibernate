@@ -76,6 +76,30 @@ public class BookController {
         return books.toString();
     }
 
+    @GetMapping(path = "/books/publisher", produces = "text/plain;charset=utf-8")
+    String findAllByPublisherIsNull() {
+
+        final List<Book> books = bookService.findByPublisherIsNotNull();
+
+        return books.toString();
+    }
+
+    @GetMapping(path = "/books/publisher", produces = "text/plain;charset=utf-8", params = "id")
+    String findAllByPublisher(Publisher publisher) {
+
+        final List<Book> books = bookService.findByPublisher(publisher);
+
+        return books.toString();
+    }
+
+    @GetMapping(path = "/books/author", produces = "text/plain;charset=utf-8", params = "id")
+    String findAllByAuthor(Author author) {
+
+        final List<Book> books = bookService.findByAuthor(author);
+
+        return books.toString();
+    }
+
     // update book
     @PutMapping(path = "/book/{id}")
     void update(@PathVariable Long id, @RequestParam String title, @RequestParam int rating, @RequestParam String description) {

@@ -48,6 +48,18 @@ public class BookService {
         return bookDao.findByRating(rating);
     }
 
+    public List<Book> findByPublisherIsNotNull() {
+        return bookDao.findByPublisherIsNotNull();
+    }
+
+    public List<Book> findByPublisher(Publisher publisher) {
+        return bookDao.findByPublisher(publisher);
+    }
+
+    public List<Book> findByAuthor(Author author) {
+        return bookDao.findByAuthor(author);
+    }
+
     public void update(Book book) {
         bookDao.update(book);
     }

@@ -10,9 +10,18 @@ GET http://localhost:8080/book/1
 GET http://localhost:8080/books
 ###
 
-GET http://localhost:8080/books?rating=4
-###
+GET http://localhost:8080/books?rating=2
 
+### publisher is not null
+GET http://localhost:8080/books/publisher
+
+### publisher with given id
+GET http://localhost:8080/books/publisher?id=10
+
+### author with given id
+GET http://localhost:8080/books/author?id=2
+
+###
 PUT http://localhost:8080/book/1?title=zażółć gęślą jaźń123&description=jakiś opis123&rating=3
 
 ###
