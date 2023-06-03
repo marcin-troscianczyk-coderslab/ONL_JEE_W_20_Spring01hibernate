@@ -1,36 +1,28 @@
 package pl.coderslab.controller;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import pl.coderslab.entity.Book;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 import java.util.Set;
 
-@RestController
-@Slf4j
+@Controller
 @RequiredArgsConstructor
 class ValidationController {
 
     private final Validator validator;
 
-    @RequestMapping("/validate")
-    String validateTest() {
-        Book p2 = new Book();
-        p2.setTitle("ala");
-        Set<ConstraintViolation<Book>> violations = validator.validate(p2);
+    @GetMapping("/validate")
+    String validateTest(Book book, Model model) {
 
-        if (!violations.isEmpty()) {
-            for (ConstraintViolation<Book> constraintViolation : violations) {
-                log.error(constraintViolation.getPropertyPath() + " "
-                        + constraintViolation.getMessage()); }
+        Set<ConstraintViolation<Book>> violations = validator.validate(book);
 
-            return "Error";
-        } else {
-            return "Validation status OK!";
-        }
+        model.addAttribute("violations", violations);
+
+        return "validator/result";
     }
 }
