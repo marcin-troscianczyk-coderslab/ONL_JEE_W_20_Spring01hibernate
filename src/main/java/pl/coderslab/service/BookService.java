@@ -9,7 +9,6 @@ import pl.coderslab.entity.Book;
 import pl.coderslab.entity.Publisher;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -17,22 +16,8 @@ import java.util.stream.Collectors;
 public class BookService {
 
     private final BookDao bookDao;
-    private final PublisherService publisherService;
-    private final AuthorService authorService;
 
     public void save(Book book) {
-
-        Publisher publisher = book.getPublisher();
-        publisherService.save(publisher);
-
-        List<Author> authors = book.getAuthors();
-
-        List<Author> filteredAuthors =
-                authors.stream()
-                        .filter(a -> authorService.findById(a.getId()) != null)
-                        .collect(Collectors.toList());
-        book.setAuthors(filteredAuthors);
-
         bookDao.save(book);
     }
 

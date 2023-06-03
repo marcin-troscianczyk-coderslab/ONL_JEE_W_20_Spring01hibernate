@@ -1,6 +1,6 @@
 package pl.coderslab.entity;
 
-import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -13,6 +13,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "publishers")
 @Setter
+@Getter
 @ToString
 public class Publisher {
 
