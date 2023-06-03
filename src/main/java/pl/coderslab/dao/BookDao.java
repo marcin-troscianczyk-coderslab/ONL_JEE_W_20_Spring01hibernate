@@ -20,9 +20,6 @@ public class BookDao {
     }
 
     public Book findById(Long id) {
-         /*return (Book) entityManager.createQuery("select distinct b from Book b left join fetch b.publisher left join fetch b.authors where b.id = :id")
-                 .setParameter("id", id)
-                 .getSingleResult();*/
         return entityManager.find(Book.class, id);
     }
 
