@@ -2,6 +2,7 @@ package pl.coderslab.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.Singular;
 import lombok.ToString;
 import org.hibernate.validator.constraints.Range;
 
