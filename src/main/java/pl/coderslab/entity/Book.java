@@ -31,10 +31,10 @@ public class Book {
     private int rating;
     private String description;
 
-    @ManyToOne//(fetch = FetchType.LAZY)//(cascade = CascadeType.PERSIST)
+    @ManyToOne(fetch = FetchType.LAZY)//(cascade = CascadeType.PERSIST)
     private Publisher publisher;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany
     @ToString.Exclude
     private List<Author> authors = new ArrayList<>();
 
