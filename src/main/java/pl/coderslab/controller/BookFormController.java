@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import pl.coderslab.entity.Book;
 import pl.coderslab.entity.Publisher;
 import pl.coderslab.service.BookService;
@@ -33,6 +34,28 @@ class BookFormController {
     String processAddBookForm(Book book) {
 
         bookService.save(book);
+
+        return "redirect:/book/list";
+    }
+
+    @GetMapping(path = "/book/edit")
+    String showEditBookForm(@RequestParam Long id, Model model) {
+        model.addAttribute("book", bookService.findById(id));
+        return "book/edit";
+    }
+
+    @PostMapping(path = "/book/edit")
+    String processEditBookForm(Book book) {
+
+        bookService.update(book);
+
+        return "redirect:/book/list";
+    }
+
+    @GetMapping(path = "/book/remove")
+    String processRemoveBook(@RequestParam Long id) {
+
+        bookService.deleteById(id);
 
         return "redirect:/book/list";
     }

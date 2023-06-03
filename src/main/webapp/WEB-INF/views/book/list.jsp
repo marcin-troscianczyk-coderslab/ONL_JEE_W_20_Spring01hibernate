@@ -21,6 +21,8 @@
       <td>${book.rating}</td>
       <td>${book.description}</td>
       <td>${book.publisher.name}</td>
+      <td><a href="edit?id=${book.id}">Edit</a></td>
+      <td><a href="remove?id=${book.id}" onclick="return confirm('Are you sure?')">Remove</a></td>
     </tr>
   </c:forEach>
 </table>
