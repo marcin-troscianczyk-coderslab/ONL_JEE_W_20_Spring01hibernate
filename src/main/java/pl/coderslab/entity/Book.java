@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -30,10 +31,10 @@ public class Book {
     private int rating;
     private String description;
 
-    @ManyToOne//(cascade = CascadeType.PERSIST)
+    @ManyToOne//(fetch = FetchType.LAZY)//(cascade = CascadeType.PERSIST)
     private Publisher publisher;
 
-    @ManyToMany//(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     @ToString.Exclude
     private List<Author> authors = new ArrayList<>();
 

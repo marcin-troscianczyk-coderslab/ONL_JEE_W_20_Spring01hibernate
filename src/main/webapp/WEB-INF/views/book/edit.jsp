@@ -14,6 +14,8 @@
     <div>Description: <form:input path="description"/></div>
     <div>Rating: <form:input path="rating" type="number" min="1" max="10"/></div>
     <div>Publisher: <form:select path="publisher.id" items="${publishers}" itemLabel="name" itemValue="id"/></div>
+    <div>Authors: <form:select path="authors" items="${authors}" itemLabel="fullName" itemValue="id"
+                           multiple="true"/>
     <form:hidden path="id"/>
     <input type="submit" value="Update book">
 </form:form>

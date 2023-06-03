@@ -13,6 +13,7 @@
     <th>Rating</th>
     <th>Description</th>
     <th>Publisher</th>
+    <th>Authors</th>
   </tr>
   <c:forEach items="${books}" var="book">
     <tr>
@@ -21,6 +22,11 @@
       <td>${book.rating}</td>
       <td>${book.description}</td>
       <td>${book.publisher.name}</td>
+      <td>
+        <c:forEach items="${book.authors}" var="author">
+          ${author.fullName}
+        </c:forEach>
+      </td>
       <td><a href="edit?id=${book.id}">Edit</a></td>
       <td><a href="remove?id=${book.id}" onclick="return confirm('Are you sure?')">Remove</a></td>
     </tr>

@@ -30,4 +30,9 @@ public class Author {
     public Author(Long id) {
         this.id = id;
     }
+
+    public String getFullName() {
+        return firstName + " " + lastName;
+    }
+
 }

@@ -20,23 +20,26 @@ public class BookDao {
     }
 
     public Book findById(Long id) {
+         /*return (Book) entityManager.createQuery("select distinct b from Book b left join fetch b.publisher left join fetch b.authors where b.id = :id")
+                 .setParameter("id", id)
+                 .getSingleResult();*/
         return entityManager.find(Book.class, id);
     }
 
     public List<Book> findAll() {
         return //entityManager.createQuery("select b from Book b join fetch b.authors")
-                entityManager.createQuery("select b from Book b")
+                entityManager.createQuery("select distinct b from Book b left join fetch b.publisher left join fetch b.authors")
                 .getResultList();
     }
 
     public List<Book> findByRating(int rating) {
-        return entityManager.createQuery("select b from Book b where b.rating = :rating")
+        return entityManager.createQuery("select distinct b from Book b left join fetch b.publisher left join fetch b.authors where b.rating = :rating")
                 .setParameter("rating", rating)
                 .getResultList();
     }
 
     public List<Book> findByPublisherIsNotNull() {
-        return entityManager.createQuery("select distinct b from Book b join fetch b.publisher left join fetch b.authors")
+        return entityManager.createQuery("select distinct b from Book b left join fetch b.publisher left join fetch b.authors")
                 .getResultList();
     }
 
