@@ -49,7 +49,7 @@
 <hr/>
 <div>
     <p>Find first by category order by title</p>
-    <form action="/book/search/category">
+    <form action="<c:url value='/book/search/category'/>">
         <label for="cid">Category id</label><input id="cid" name="id" type="number" min="1">
         <input type="submit" value="Search">
     </form>
@@ -57,7 +57,7 @@
 <hr/>
 <div>
     <p>Find by publisher</p>
-    <form action="/book/search/publisher">
+    <form action="<c:url value='/book/search/publisher'/>">
         <label for="pid">Publisher id</label><input id="pid" name="id" type="number" min="1">
         <input type="submit" value="Search">
     </form>
@@ -65,13 +65,12 @@
 <hr/>
 <div>
     <p>Find by author</p>
-    <form action="/book/search/author">
+    <form action="<c:url value='/book/search/author'/>">
         <label for="aid">Author id</label><input id="aid" name="id" type="number" min="1">
         <input type="submit" value="Search">
     </form>
 </div>
 <hr/>
-<a href="/book/list">Back to list of all books</a>
+<a href="<c:url value='/book/list'/>">Back to list of all books</a>
 </body>
 </html>
-

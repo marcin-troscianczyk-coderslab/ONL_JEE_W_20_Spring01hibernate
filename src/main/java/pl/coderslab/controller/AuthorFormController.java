@@ -74,4 +74,30 @@ class AuthorFormController {
 
         return "author/list";
     }
+
+    @GetMapping(path = "/author/search")
+    String showSearchAuthorForm() {
+        return "author/search";
+
+    }
+
+    @GetMapping(path = "/author/search", params = "email")
+    String findByEmailStartsWith(@RequestParam String email, Model model) {
+
+        List<Author> authors = authorService.findByEmailStartsWith(email);
+
+        model.addAttribute("authors", authors);
+
+        return "author/list";
+    }
+
+    @GetMapping(path = "/author/search", params = "pesel")
+    String findByPeselStartsWith(@RequestParam String pesel, Model model) {
+
+        List<Author> authors = authorService.findByPeselStartsWith(pesel);
+
+        model.addAttribute("authors", authors);
+
+        return "author/list";
+    }
 }

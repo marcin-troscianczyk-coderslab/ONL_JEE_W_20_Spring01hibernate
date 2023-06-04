@@ -1,39 +1,44 @@
 package pl.coderslab.service;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pl.coderslab.dao.AuthorDao;
 import pl.coderslab.entity.Author;
+import pl.coderslab.repository.AuthorRepository;
 
 import java.util.List;
 
 @Service
 @Transactional
+@RequiredArgsConstructor
 public class AuthorService {
 
-    private AuthorDao authorDao;
-
-    public AuthorService(AuthorDao authorDao) {
-        this.authorDao = authorDao;
-    }
+    private final AuthorRepository authorRepository;
 
     public void save(Author author) {
-        authorDao.save(author);
+        authorRepository.save(author);
     }
 
     public Author findById(Long id) {
-        return authorDao.findById(id);
+        return authorRepository.findById(id).get();
     }
 
     public List<Author> findAll() {
-        return authorDao.findAll();
+        return authorRepository.findAll();
     }
 
     public void update(Author author) {
-        authorDao.update(author);
+        authorRepository.save(author);
     }
 
     public void deleteById(Long id) {
-        authorDao.deleteById(id);
+        authorRepository.deleteById(id);
+    }
+
+    public List<Author> findByEmailStartsWith(String prefix) {
+        return authorRepository.findByEmailStartsWith(prefix);
+    };
+    public List<Author> findByPeselStartsWith(String prefix) {
+        return authorRepository.findByPeselStartsWith(prefix);
     }
 }

@@ -31,15 +31,14 @@
       </td>
       <td>${book.pages}</td>
       <td>${book.category.name}</td>
-      <td><a href="/book/edit?id=${book.id}">Edit</a></td>
-      <td><a href="/book/remove?id=${book.id}" onclick="return confirm('Are you sure?')">Remove</a></td>
+      <td><a href="<c:url value='/book/edit?id=${book.id}'/>">Edit</a></td>
+      <td><a href="<c:url value='/book/remove?id=${book.id}'/>" onclick="return confirm('Are you sure?')">Remove</a></td>
     </tr>
   </c:forEach>
 </table>
 
-<a href="/book/add">Add new book</a>
-<a href="/book/search">Search book</a>
-<a href="/book/list">List of all books</a>
+<a href="<c:url value='/book/add'/>">Add new book</a>
+<a href="<c:url value='/book/search'/>">Search book</a>
+<a href="<c:url value='/book/list'/>">List of all books</a>
 </body>
 </html>
-
