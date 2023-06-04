@@ -45,18 +45,18 @@ public class Book {
     private String description;
 
     @NotNull
-    @ManyToOne//(fetch = FetchType.LAZY)//(cascade = CascadeType.PERSIST)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Publisher publisher;
 
     @NotEmpty
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany
     @ToString.Exclude
     private List<Author> authors = new ArrayList<>();
 
     @Min(1)
     private int pages;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @NotNull
     private Category category;
 
