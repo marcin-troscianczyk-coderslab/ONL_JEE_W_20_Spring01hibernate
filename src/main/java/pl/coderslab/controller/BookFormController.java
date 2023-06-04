@@ -33,14 +33,14 @@ class BookFormController {
     private final CategoryService categoryService;
 
     // wyswietlenie formularza dodawania ksiazki
-    @GetMapping(path = "/book/form")
+    @GetMapping(path = "/book/add")
     String showAddBookForm(Model model) {
         model.addAttribute("book", new Book());
         return "book/add";
     }
 
     // obsluga formularza dodawania ksiazki
-    @PostMapping(path = "/book/form")
+    @PostMapping(path = "/book/add")
     String processAddBookForm(@Valid Book book, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
@@ -88,11 +88,37 @@ class BookFormController {
         return "book/list";
     }
 
+    @GetMapping(path = "/book/search")
+    String showSearchBookForm() {
+        return "book/search";
+
+    }
+
     // np. http://localhost:8080/book/search?title=Java+techniki+programowania
     @GetMapping(path = "/book/search", params = "title")
     String findByTile(@RequestParam String title, Model model) {
 
         List<Book> books = bookService.findByTitle(title);
+        model.addAttribute("books", books);
+
+        return "book/list";
+
+    }
+
+    @GetMapping(path = "/book/search", params = "rating")
+    String findByRating(@RequestParam int rating, Model model) {
+
+        List<Book> books = bookService.findByRating(rating);
+        model.addAttribute("books", books);
+
+        return "book/list";
+
+    }
+
+    @GetMapping(path = "/book/search", params = {"min", "max"})
+    String findByRatingBetween(@RequestParam int min, @RequestParam int max, Model model) {
+
+        List<Book> books = bookService.findByRatingBetween(min, max);
         model.addAttribute("books", books);
 
         return "book/list";
@@ -131,6 +157,26 @@ class BookFormController {
 
         return "book/list";
     }
+    @GetMapping(path = "/book/search/publisher", params = "id")
+    String findByPublisher(Publisher publisher, Model model) {
+
+        List<Book> books = bookService.findByPublisher(publisher);
+
+        model.addAttribute("books", books);
+
+        return "book/list";
+    }
+
+    @GetMapping(path = "/book/search/author", params = "id")
+    String findByAuthor(Author author, Model model) {
+
+        List<Book> books = bookService.findByAuthor(author);
+
+        model.addAttribute("books", books);
+
+        return "book/list";
+    }
+
     // umieszczenie w modelu pod kluczem 'publishers' kolekcji obiektow Publisher
     @ModelAttribute("publishers")
     Collection<Publisher> findAllPublishers() {

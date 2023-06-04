@@ -38,6 +38,10 @@ public class BookService {
         return bookRepository.findByRating(rating);
     }
 
+    public List<Book> findByRatingBetween(int min, int max) {
+        return bookRepository.findByRatingBetween(min, max);
+    }
+
     public List<Book> findByPublisherIsNotNull() {
         return bookRepository.findByPublisherIsNotNull();
     }
