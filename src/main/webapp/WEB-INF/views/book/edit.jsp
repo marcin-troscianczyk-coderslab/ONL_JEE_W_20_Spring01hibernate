@@ -22,6 +22,8 @@
     <div>Authors: <form:select path="authors" items="${authors}" itemLabel="fullName" itemValue="id"
                                multiple="true"/><form:errors path="authors" cssClass="error"/></div>
     <div>Pages: <form:input path="pages" type="number" min="1" placeholder="Podaj liczbę stron"/><form:errors path="pages" cssClass="error"/></div>
+    <div>Category: <form:select path="category.id" items="${categories}" itemLabel="name" itemValue="id"/><form:errors
+            path="category" cssClass="error"/></div>
     <form:hidden path="id"/>
     <input type="submit" value="Update book">
 </form:form>
