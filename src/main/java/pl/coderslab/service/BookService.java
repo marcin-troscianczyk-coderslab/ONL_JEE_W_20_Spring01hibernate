@@ -1,6 +1,8 @@
 package pl.coderslab.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.coderslab.entity.Author;
@@ -59,7 +61,9 @@ public class BookService {
         return bookRepository.findByCategoryId(id);
     }
     public Optional<Book> findFirstByCategoryOrderByTitle(Category category) {
-        return bookRepository.findFirstByCategoryOrderByTitle(category);
+        return bookRepository.findFirstByCategoryOrderByTitle(category, PageRequest.of(0, 1, Sort.by(Sort.Direction.ASC, "title")))
+                .stream()
+                .findFirst();
     }
 
     public void update(Book book) {
